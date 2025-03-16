@@ -1,0 +1,24 @@
+{
+	"name": "SaveBronzeJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BlobBronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('breweries_', formatDateTime(utcnow(), 'yyyyMMddHHmmss'), '.json')",
+					"type": "Expression"
+				},
+				"folderPath": "bronze",
+				"container": "breweries"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

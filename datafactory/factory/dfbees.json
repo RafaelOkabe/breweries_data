@@ -1,0 +1,9 @@
+{
+	"name": "dfbees",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "da77331c-7857-44af-9359-62c12751efb4",
+		"tenantId": "ad7be6de-bf6f-4cc6-b7de-70020b9ae596"
+	}
+}
