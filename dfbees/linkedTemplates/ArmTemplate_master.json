@@ -1,0 +1,84 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Nome do Data Factory",
+			"defaultValue": "dfbees"
+		},
+		"AzureDatabricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Cadeia de caracteres segura para 'accessToken' de 'AzureDatabricks'"
+		},
+		"AzureFunctions_functionKey": {
+			"type": "secureString",
+			"metadata": "Cadeia de caracteres segura para 'functionKey' de 'AzureFunctions'"
+		},
+		"BlobBronze_connectionString": {
+			"type": "secureString",
+			"metadata": "Cadeia de caracteres segura para 'connectionString' de 'BlobBronze'"
+		},
+		"APIBreweries_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.openbrewerydb.org/breweries"
+		},
+		"AzureDatabricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0316-182247-rn0cxq9o"
+		},
+		"AzureFunctions_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI para a conta de armazenamento contendo os modelos do ARM vinculados"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Token SAS para a conta de armazenamento contendo modelos do ARM vinculados"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "dfbees_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDatabricks_accessToken": {
+						"value": "[parameters('AzureDatabricks_accessToken')]"
+					},
+					"AzureFunctions_functionKey": {
+						"value": "[parameters('AzureFunctions_functionKey')]"
+					},
+					"BlobBronze_connectionString": {
+						"value": "[parameters('BlobBronze_connectionString')]"
+					},
+					"APIBreweries_properties_typeProperties_url": {
+						"value": "[parameters('APIBreweries_properties_typeProperties_url')]"
+					},
+					"AzureDatabricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks_properties_typeProperties_existingClusterId')]"
+					},
+					"AzureFunctions_properties_typeProperties_functionAppUrl": {
+						"value": "[parameters('AzureFunctions_properties_typeProperties_functionAppUrl')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

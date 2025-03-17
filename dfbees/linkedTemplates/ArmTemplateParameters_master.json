@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "dfbees"
+		},
+		"AzureDatabricks_accessToken": {
+			"value": ""
+		},
+		"AzureFunctions_functionKey": {
+			"value": ""
+		},
+		"BlobBronze_connectionString": {
+			"value": ""
+		},
+		"APIBreweries_properties_typeProperties_url": {
+			"value": "https://api.openbrewerydb.org/breweries"
+		},
+		"AzureDatabricks_properties_typeProperties_existingClusterId": {
+			"value": "0316-182247-rn0cxq9o"
+		},
+		"AzureFunctions_properties_typeProperties_functionAppUrl": {
+			"value": ""
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
