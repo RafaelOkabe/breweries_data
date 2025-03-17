@@ -1,73 +1,72 @@
-# Azure Data Engineering ETL Pipeline
+# ETL Data Engineering Project with Azure Cloud
 
-This repository contains an Extract, Transform, Load (ETL) pipeline built on the Azure platform, demonstrating an end-to-end data flow using services such as Azure Data Factory, Azure Databricks, and Azure Storage.
+## Overview
 
-## Project Overview
-
-The goal of this project is to ingest raw data from a public API, transform and aggregate it to provide insights into breweries. The pipeline is designed to follow a data lake architecture with three layers: bronze, silver, and gold.
+This project implements a complete ETL (Extract, Transform, Load) pipeline using the Azure cloud ecosystem. It processes data from an external API and organizes it into a structured Data Lake architecture with multiple layers (Bronze, Silver, Gold) for advanced analysis.
 
 ## Architecture
 
-![Project Architecture](link_to_your_architecture_image_here.png)
-
-The architecture consists of the following components:
-
-* **Azure Data Factory (ADF):** Orchestrates the ETL pipeline, coordinating data movement and transformation.
-* **Azure Databricks:** Executes PySpark notebooks to transform and aggregate data in the silver and gold layers.
-* **Azure Storage:** Stores data in different layers of the data lake:
-    * **Bronze:** Stores raw data in JSON format from the `https://api.openbrewerydb.org/breweries` API.
-    * **Silver:** Stores transformed data in Parquet format, with improved data quality.
-    * **Gold:** Stores aggregated data in Parquet format, ready for analysis.
+The pipeline leverages the following Azure services and frameworks:
+- **Azure Data Factory**: Orchestrates and triggers the ETL workflow.
+- **Azure Databricks**: Executes PySpark notebooks for scalable data transformations.
+- **Azure Storage Account**: Hosts the Data Lake for storing raw, intermediate, and processed datasets across layers.
 
 ## Data Flow
 
-1.  **Extraction (Bronze):**
-    * ADF extracts raw data from the Open Brewery DB API in JSON format and stores it in the bronze layer of Azure Storage.
-2.  **Transformation (Silver):**
-    * A Databricks notebook in PySpark reads the data from the bronze layer.
-    * The data is transformed and cleaned, including handling missing values and ensuring the integrity of the phone, latitude, and longitude fields.
-    * The transformed data is stored in the silver layer in Parquet format.
-3.  **Aggregation (Gold):**
-    * Another Databricks notebook in PySpark reads the data from the silver layer.
-    * The data is aggregated to create a view that shows the count of breweries by type and location.
-    * The aggregated data is stored in the gold layer in Parquet format.
+### Data Source
+- **Source**: Data ingested from the public API: [Open Brewery DB](https://api.openbrewerydb.org/breweries).
+- **Format**: Initial raw data in JSON format.
 
-## Technical Details
+### Data Layers
+1. **Bronze Layer**:
+   - Stores raw JSON data fetched from the API.
+   - Serves as the immutable source for further transformations.
 
-* **Azure Data Factory:**
-    * Pipelines and activities for data extraction and orchestration.
-    * Linked services to connect to Azure Storage and Azure Databricks.
-* **Azure Databricks:**
-    * PySpark notebooks for data transformation and aggregation.
-    * Reading and writing data in Parquet format.
-    * Handling missing data and ensuring data quality.
-    * Aggregations to create summarized data views.
-* **Azure Storage:**
-    * Data lake organized in bronze, silver, and gold layers.
-    * Storage of data in JSON and Parquet formats.
+2. **Silver Layer**:
+   - Transforms JSON data into Parquet format for better performance.
+   - Cleans and validates data fields, such as phone numbers, latitude, and longitude.
 
-## How to Run
+3. **Gold Layer**:
+   - Aggregates data and generates analytical summaries.
+   - Provides a view showing the number of breweries by type and location.
 
-1.  **Prerequisites:**
-    * An Azure subscription.
-    * Configured Azure Data Factory, Azure Databricks, and Azure Storage instances.
-    * Databricks notebooks and ADF pipelines imported into their respective instances.
-    * Configure Data Factory Linked services to Databricks and the Storage Account.
-2.  **Execution:**
-    * Run the ADF pipeline to start the ETL data flow.
-    * Monitor pipeline execution in ADF and Databricks jobs in the Databricks workspace.
+## Pipeline Integration
 
-## Repository Contents
+- **Azure Data Factory Pipelines**: Orchestrates the workflow by invoking Databricks notebooks.
+- **Databricks Notebooks in PySpark**: Implements processing logic for each data layer—Bronze, Silver, and Gold.
 
-* `adf/`: Azure Data Factory pipelines and linked services.
-* `databricks/`: PySpark notebooks for data transformation and aggregation.
-* `images/`: Architecture diagrams and other relevant images.
-* `README.md`: This file.
+## Features
 
-## Contribution
+- API-based data ingestion from a public source.
+- Data Lake architecture with Bronze, Silver, and Gold layers for structured data management.
+- Data cleaning and validation to ensure quality and consistency.
+- Aggregated analytical insights for business intelligence.
+- Full integration with version control using GitHub, including both Databricks notebooks and Data Factory pipelines.
 
-Contributions are welcome! Feel free to submit pull requests to improve the pipeline or add new features.
+## How to Use
 
-## License
+1. Clone the repository from GitHub containing:
+   - Databricks notebooks.
+   - Data Factory pipeline configurations.
+2. Configure Azure components:
+   - Set up an Azure Storage Account to host the Data Lake.
+   - Deploy the Data Factory pipeline.
+   - Import Databricks notebooks and configure a compatible cluster.
+3. Trigger the ETL pipeline through Azure Data Factory.
+4. Access the aggregated Gold Layer data for analytics and visualization.
 
-This project is licensed under the [MIT License](link_to_your_license_here).
+## Technologies Used
+
+- **Azure Data Factory**
+- **Azure Databricks**
+- **PySpark**
+- **Azure Blob Storage**
+- **Parquet Format**
+
+## Output Example
+
+The output includes an aggregated view of breweries by type and location, stored in the Gold layer for easy consumption.
+
+---
+
+Feel free to copy this and adapt it as needed for your repository. 😊
