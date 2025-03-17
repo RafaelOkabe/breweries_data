@@ -10,6 +10,10 @@ The pipeline leverages the following Azure services and frameworks:
 - **Azure Data Factory**: Orchestrates and triggers the ETL workflow.
 - **Azure Databricks**: Executes PySpark notebooks for scalable data transformations.
 - **Azure Storage Account**: Hosts the Data Lake for storing raw, intermediate, and processed datasets across layers.
+  
+Below is the architecture diagram for this ETL project:
+
+![Architecture Diagram](arquitetura.png)
 
 ## Data Flow
 
