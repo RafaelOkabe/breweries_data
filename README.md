@@ -65,12 +65,25 @@ Below is the architecture diagram for this ETL project:
 - **Azure Databricks**
 - **PySpark**
 - **Azure Blob Storage**
-- **Parquet Format**
 
 ## Output Example
 
+┌────────────┬──────────────┬───────────────┐
+│ state      ┆ brewery_type ┆ brewery_count │
+│ ---        ┆ ---          ┆ ---           │
+│ str        ┆ str          ┆ i64           │
+╞════════════╪══════════════╪═══════════════╡
+│ Arizona    ┆ micro        ┆ 3             │
+│ California ┆ closed       ┆ 1             │
+│ California ┆ large        ┆ 1             │
+│ California ┆ micro        ┆ 2             │
+│ Colorado   ┆ brewpub      ┆ 1             │
+│ …          ┆ …            ┆ …             │
+│ Vermont    ┆ micro        ┆ 1             │
+│ Virginia   ┆ micro        ┆ 1             │
+│ Washington ┆ closed       ┆ 1             │
+│ Washington ┆ micro        ┆ 1             │
+│ Wisconsin  ┆ micro        ┆ 2             │
+└────────────┴──────────────┴───────────────┘
+
 The output includes an aggregated view of breweries by type and location, stored in the Gold layer for easy consumption.
-
----
-
-Feel free to copy this and adapt it as needed for your repository. 😊
